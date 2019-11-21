@@ -25,7 +25,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-repeat'
   Plug 'tpope/vim-surround'
   Plug 'jiangmiao/auto-pairs'
-  "Plug 'kyuhi/vim-emoji-complete'
+  Plug 'terryma/vim-multiple-cursors'
 
   "Git (macros and gutter bar icons)
   Plug 'tpope/vim-fugitive'
