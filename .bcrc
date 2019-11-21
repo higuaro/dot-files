@@ -1,0 +1,35 @@
+define mod(x,y) { 
+  tmp   = scale
+  scale = 0
+  ret   = x%y
+  scale = tmp
+  return ret
+}
+define gcd(a, b) {
+  auto t
+  if (a < b) {
+    t = b
+    b = a
+    a = t
+  }
+  while (mod(a, b) != 0) {
+    t = a
+    a = b
+    b = mod(t, b)
+  }
+  return b
+}
+define gcd3(a, b, c) {
+  return gcd(a, gcd(b, c))
+}
+define lcm(a, b) {
+  tmp = scale
+  scale = 0
+  r = (a * b) / gcd(a, b)
+  scale = tmp
+  return r
+}
+define lcm3(a, b, c) {
+  return lcm(a, lcm(b, c))
+}
+

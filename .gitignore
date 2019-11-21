@@ -1,0 +1,4 @@
+.Xresources
+config
+*.bak
+tmp/
