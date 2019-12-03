@@ -52,6 +52,7 @@ call plug#end()
 "--------
 "SETTINGS
 "--------
+set nocompatible                      "Unleash vim features by disabling compatibility with vi
 
 "From the book Practical Vim, When this plugin is enabled,
 "the % command can jump between matching pairs of keywords.
@@ -71,7 +72,6 @@ set nomousehide                       "Don't hide the mouse cursor while typing
 set relativenumber                    "Shows relative numbers from the current line to jump to
 set number                            "Along with the previous setting, displays the current line number
 set icon                              "Shows an * on the tab when the file has changes
-set nocompatible                      "Unleash vim features by disabling compatibility with vi
 set cwh=4                             "Height of the command line window
 set noswapfile                        "Turn off swap files
 set udf                               "Automatically save and restore undo history (UnDo File)
