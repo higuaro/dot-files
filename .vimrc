@@ -10,30 +10,23 @@ call plug#begin('~/.vim/plugged')
   Plug 'tweekmonster/fzf-filemru'
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
-  "c++
-  Plug 'w0rp/ale'
-  Plug 'cpiger/NeoDebug'
-
-  "Haskell
-  " Plug 'eagletmt/ghcmod-vim'
-  " Plug 'Shougo/vimproc', {'do' : 'make'}
-
   "Look & feel
   Plug 'vim-airline/vim-airline'
 
   "Editing aids
   Plug 'tpope/vim-repeat'
   Plug 'tpope/vim-surround'
-  Plug 'jiangmiao/auto-pairs'
   Plug 'terryma/vim-multiple-cursors'
+
+  "UndoTree (Enable with :UndotreeToggle)
+  Plug 'mbbill/undotree'
 
   "Git (macros and gutter bar icons)
   Plug 'tpope/vim-fugitive'
   Plug 'airblade/vim-gitgutter'
 
-  "Elm
-  "Plug 'elmcast/elm-vim'
-
+  "Work things
+  "==============
   "Terraform
   Plug 'hashivim/vim-terraform'
 
@@ -41,12 +34,26 @@ call plug#begin('~/.vim/plugged')
   "Plug 'leafgarland/typescript-vim'
   "Plug 'Quramy/tsuquyomi'
 
+  "Fun things
+  "=============
+  "c++
+  Plug 'w0rp/ale'
+  Plug 'cpiger/NeoDebug'
+
+  "Haskell
+  "Plug 'eagletmt/ghcmod-vim'
+  "Plug 'Shougo/vimproc', {'do' : 'make'}
+
+  "Elm
+  "Plug 'elmcast/elm-vim'
+
+  "glsl
+  Plug 'petrbroz/vim-glsl'
+
   "Pico8
   Plug 'evanrelf/vim-pico8-color'
   Plug 'ssteinbach/vim-pico8-syntax' " optional
 
-  "UndoTree (Enable with :UndotreeToggle)
-  Plug 'mbbill/undotree'
 call plug#end()
 
 "--------
@@ -175,6 +182,8 @@ highlight CursorLine cterm=NONE ctermbg=235 guibg=#222222
 "------------------------------------------
 "AUTO-CMD (Commands that run upon an event)
 "------------------------------------------
+"Set indentation in Python to 2 spaces
+autocmd Filetype python setlocal ts=2 sw=2 expandtab
 
 "Set JSON file syntax support on file (buffer) load/new events
 autocmd BufRead,BufNewFile *.json set filetype=json
@@ -278,8 +287,8 @@ highlight ALEWarningSign ctermbg=NONE ctermfg=yellow
 highlight ALEStyleWarningSign ctermbg=NONE ctermfg=red
 highlight ALEStyleWarningSign ctermbg=NONE ctermfg=yellow
 
-call ale#Set('cpp_gcc_executable', 'gcc')
-call ale#Set('cpp_gcc_options', '-std=c++17 -Wall')
+call ale#Set('cpp_gcc_executable', 'g++')
+call ale#Set('cpp_gcc_options', '-std=c++17')
 
 "--------
 "COMMANDS
