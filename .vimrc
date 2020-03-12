@@ -44,8 +44,11 @@ call plug#begin('~/.vim/plugged')
   "Plug 'eagletmt/ghcmod-vim'
   "Plug 'Shougo/vimproc', {'do' : 'make'}
 
+  "Godot
+  Plug 'calviken/vim-gdscript3'
+
   "Elm
-  "Plug 'elmcast/elm-vim'
+  Plug 'elmcast/elm-vim'
 
   "glsl
   Plug 'petrbroz/vim-glsl'
@@ -75,6 +78,7 @@ syntax on                             "Enable syntax highlighting
 set encoding=utf-8
 set gdefault                          "Assume the /g flag on :s substitutions to replace all matches in a line
 set mouse=a                           "Selecting with mouse enters in Visual Mode automatically
+set ttymouse=sgr                      "Name of the terminal type for which mouse codes are to be recognized
 set nomousehide                       "Don't hide the mouse cursor while typing
 set relativenumber                    "Shows relative numbers from the current line to jump to
 set number                            "Along with the previous setting, displays the current line number
@@ -267,6 +271,7 @@ noremap <leader>rc :source ~/.vimrc<cr>
 "----------------------
 
 "Enable tabline for vim-airline
+let g:airline#extensions#ale#enabled = 1
 let g:airline#extensions#tabline#enabled = 1
 
 "Enable powerline symbols in vim-airline status bar
@@ -289,7 +294,18 @@ highlight ALEStyleWarningSign ctermbg=NONE ctermfg=yellow
 
 call ale#Set('cpp_gcc_executable', 'g++')
 call ale#Set('cpp_gcc_options', '-std=c++17')
+call ale#Set('cpp_clang_options', '-std=c++17')
 
+let g:ale_cpp_gcc_options = '-Wall -std=c++17'
+let g:ale_cpp_clang_options = '-Wall -std=c++17'
+let g:ale_cpp_clangd_options = '-Wall -std=c++17'
+let g:ale_linter = { 'cpp': ['g++'], 'c++': ['g++'] }
+let g:ale_cpp_clangtidy_extra_options = '-extra-arg=-std=c++17'
+let g:ale_cpp_clangcheck_options = '-extra-arg=-std=c++17'
+
+let g:ale_statusline_format = ['✘ %d', '⚠  %d', '✔ OK']
+let g:ale_set_balloons = 1
+let g:ale_set_quickfix = 1
 "--------
 "COMMANDS
 "--------
