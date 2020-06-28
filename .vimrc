@@ -208,6 +208,15 @@ autocmd FileType markdown setlocal nolist wrap lbr
 "autocmd BufWritePost * call system("ctags")
 
 "-----------------------
+"CP shortcuts
+"-----------------------
+"Runs (a previously built) program using test cases from the clipboard
+autocmd filetype cpp nnoremap <S-F5> :w <bar> exec '!clear && echo "$(tput setaf 2)$(tput bold)Input:$(tput sgr0)" && xclip -out -selection c && echo -e "\n\n$(tput setaf 14)$(tput bold)Output:$(tput sgr0)" && xclip -out -selection c \| ./'.shellescape('%:r')<CR>
+"Builds and runs the program using test cases from the clipboard
+autocmd filetype cpp nnoremap <F5> :w <bar> exec '!clear && g++ -ggdb -std=c++17 '.shellescape('%').' -o '.shellescape('%:r').' && echo "$(tput setaf 2)$(tput bold)Input:$(tput sgr0)" && xclip -out -selection c && echo -e "\n\n$(tput setaf 14)$(tput bold)Output:$(tput sgr0)" && xclip -out -selection c \| ./'.shellescape('%:r')<CR>
+"Builds the program on a new shell
+autocmd filetype cpp nnoremap <F6> :w <bar> silent exec '!terminator --working-dir "%:p:h" -e ''bash -i <<<"exec </dev/tty; g++ -ggdb -std=c++17 '.shellescape('%').' -o '.shellescape('%:r').'"''' <bar> redraw <CR>
+"-----------------------
 "FILETYPE CONFIGURATIONS
 "-----------------------
 "Adds the ':' as a keyword for LUA files (e.g., obj:func())
@@ -221,7 +230,7 @@ augroup END
 "-----------
 "Makes Ctrl+v, Ctrl+c and Ctrl+x more Windows like:
 "https://superuser.com/a/189198
-vmap <C-c> "+yi
+vmap <C-c> "+y
 vmap <C-x> "+c
 vmap <C-v> c<ESC>"+p
 imap <C-v> <C-r><C-o>+
