@@ -1,0 +1,35 @@
+source ~/.vimrc
+set surround
+set multiple-cursors
+set ideajoinset clipboard+=ideaput
+set ideajoin
+
+"---------
+"gVIM CONF
+"---------
+set noeb vb t_vb=
+if has("gui_running")
+  set t_Co=256 " 256 colors in terminal
+  set printoptions=paper:letter         " use letter as the print output format
+  set guioptions-=T                     " turn off GUI toolbar (icons)
+  set guioptions-=r                     " turn off GUI right scrollbar
+  set guioptions-=L                     " turn off GUI left scrollbar
+  " Highlight columns 80 and 120
+  let &colorcolumn='80,120'
+  highlight ColorColumn ctermbg=DarkGray guibg=#222222
+  highlight CursorLine cterm=NONE ctermbg=DarkGray guibg=#222222
+
+  if has("win32")
+    set guifont=Terminus_\(TTF\)_for_Windows:h12:cANSI:qDRAFT
+  else
+    set guifont=Terminus\ \(TTF\)\ Medium\ 12
+  endif
+endif
+
+highlight iCursor guifg=white guibg=green
+set guicursor=n-v-c:block-iCursor
+set guicursor+=n-v-c:blinkon0
+set guicursor+=r:blinkwait10
+set guicursor+=r:hor10-iCursor
+set guicursor+=i:blinkwait10
+set guicursor+=i:ver13-iCursor
